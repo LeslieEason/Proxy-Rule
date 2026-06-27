@@ -19,7 +19,7 @@ dns:
     - 119.29.29.29
 
   nameserver:
-    - https://你的NextDNS配置.dns.nextdns.io/dns-query
+    - https://78f366.dns.nextdns.io/dns-query
 
 
 tun:
