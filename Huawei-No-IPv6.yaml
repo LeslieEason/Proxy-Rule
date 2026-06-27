@@ -9,72 +9,28 @@ log-level: warning
 ipv6: false
 
 
-# =========================
-# 占位直连节点
-# 不存在任何代理服务器
-# =========================
-
-proxies:
-  - name: DIRECT
-    type: direct
-
-
-proxy-groups:
-  - name: DEFAULT
-    type: select
-    proxies:
-      - DIRECT
-
-
-# =========================
-# DNS
-# =========================
-
 dns:
   enable: true
-
-  # 核心：不返回AAAA IPv6
   ipv6: false
-
-  # 不使用fake-ip，保护内网
   enhanced-mode: redir-host
-
 
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
 
-
   nameserver:
-    # 这里换成你的NextDNS
-    - https://你的ID.dns.nextdns.io/dns-query
+    - https://你的NextDNS配置.dns.nextdns.io/dns-query
 
-
-# =========================
-# TUN
-# =========================
 
 tun:
   enable: true
-
   stack: system
-
   auto-route: true
-
   auto-detect-interface: true
 
 
-# =========================
-# 路由
-# =========================
-
 rules:
-
-  # 内网IPv4直连
   - IP-CIDR,192.168.0.0/16,DIRECT
   - IP-CIDR,10.0.0.0/8,DIRECT
   - IP-CIDR,172.16.0.0/12,DIRECT
-
-
-  # 全部直连
   - MATCH,DIRECT
