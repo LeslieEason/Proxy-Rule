@@ -3,6 +3,9 @@ allow-lan: false
 mode: rule
 log-level: warning
 
+# =========================
+# DNS（核心：压制 IPv6）
+# =========================
 dns:
   enable: true
   ipv6: false
@@ -15,12 +18,31 @@ dns:
   nameserver:
     - https://78f366.dns.nextdns.io/dns-query
 
+# =========================
+# 必须存在的合法代理结构（占位）
+# =========================
+proxies:
+  - name: DIRECT
+    type: direct
+
+proxy-groups:
+  - name: AUTO
+    type: select
+    proxies:
+      - DIRECT
+
+# =========================
+# TUN（关键）
+# =========================
 tun:
   enable: true
   stack: system
   auto-route: true
   auto-detect-interface: true
 
+# =========================
+# 路由（全部直连）
+# =========================
 rules:
   - IP-CIDR,192.168.0.0/16,DIRECT
   - IP-CIDR,10.0.0.0/8,DIRECT
